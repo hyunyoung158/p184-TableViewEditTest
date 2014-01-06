@@ -59,13 +59,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return [data count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //dynamic prototypes 방식 사용
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL_ID" forIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"Cell %d", (int)indexPath.row];
+    cell.textLabel.text = data[indexPath.row];
     
     return cell;
 }
@@ -73,6 +73,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     data =  [[NSMutableArray alloc] initWithObjects:@"Item0", @"Item1", @"Item2", @"Item3", @"Item4", @"Item5", @"Item6", @"Item7", nil];
 }
 
