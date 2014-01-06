@@ -27,8 +27,14 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    //TODO : data 추가
-    
+    //alertview string 읽어오기
+    UITextField *strField = [alertView textFieldAtIndex:0];
+    NSString *str = strField.text;
+    NSLog(@"%@", str);
+    //array에 데이터 추가
+    [data insertObject:str atIndex:[data count]];
+    //테이블뷰 리로드?
+    [self.table reloadData];
 }
 
 //각 스타일을 번갈아 가면서 사용~
@@ -50,6 +56,7 @@
         //테이블 셀 삭제
         NSArray *rowList = [NSArray arrayWithObject:indexPath];
         [tableView deleteRowsAtIndexPaths:rowList withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.table reloadData];
     }else {
         //데이터 추가를 위한 alertView 띄우기
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"추가" message:nil delegate:self cancelButtonTitle:@"취소" otherButtonTitles:@"확인", nil];
